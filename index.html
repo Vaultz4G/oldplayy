@@ -44,7 +44,7 @@
     .art{height:170px;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#080f15}.art img{display:block;width:100%;height:100%;object-fit:cover}.art img.contain{object-fit:contain;padding:10px;background:#080f15}.art:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 54%,rgba(3,9,13,.32));pointer-events:none}.year{position:absolute;top:12px;right:12px;z-index:2;background:rgba(5,12,17,.76);color:#fff;border:1px solid rgba(255,255,255,.24);padding:5px 7px;border-radius:5px;font:600 10px "IBM Plex Mono"}
     .game-body{padding:18px}.genre{font:600 10px "IBM Plex Mono";letter-spacing:.1em;text-transform:uppercase;color:var(--cyan)}.game h3{font-size:18px;line-height:1.2;margin:8px 0 7px}.meta{font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.card-actions{display:flex;align-items:center;justify-content:space-between;margin-top:18px}.details{border:0;background:transparent;padding:0;color:var(--muted);font-size:12px;font-weight:700;cursor:pointer}.details:hover{color:var(--ink)}.play{display:inline-flex;align-items:center;gap:7px;background:var(--ink);color:var(--bg);border:0;border-radius:7px;padding:9px 12px;font-weight:800;font-size:12px;cursor:pointer}.play svg{width:11px}
     .empty{display:none;text-align:center;padding:65px 20px;border:1px dashed var(--line);color:var(--muted);background:var(--panel)}
-    .ad{padding:18px 0}.adbox{min-height:100px;border:1px dashed color-mix(in srgb,var(--muted) 55%,transparent);display:flex;align-items:center;justify-content:center;color:var(--muted);background:linear-gradient(90deg,var(--panel) 0 50%,color-mix(in srgb,var(--ticker) 14%,var(--panel)) 50% 100%);font:500 10px "IBM Plex Mono";letter-spacing:.12em;text-transform:uppercase}
+    .ad{padding:18px 0}.adslot{width:100%;max-width:728px;margin:0 auto;overflow:hidden;display:flex;justify-content:center}.adslot iframe{border:0;display:block}
     .video-banner{padding:18px 0 24px;scroll-margin-top:84px}.video-shell{display:flex;justify-content:center;padding:18px;background:#080f15;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}.video-shell video{display:block;width:min(100%,320px);height:auto;max-height:500px;background:#05090c;border-radius:10px}.video-actions{display:flex;justify-content:center;margin-top:12px}.video-actions .btn{color:var(--ink);border-color:var(--line);background:var(--panel)}.video-actions .btn:hover{border-color:var(--cyan)}
     .route{background:var(--panel-2);border-block:1px solid var(--line)}.route-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:44px;align-items:start}.route h2{font-size:clamp(30px,4vw,52px);letter-spacing:-.05em;margin:0}.steps{counter-reset:steps}.step{counter-increment:steps;display:grid;grid-template-columns:48px 1fr;gap:18px;padding:20px 0;border-top:1px solid var(--line)}.step:first-child{border-top:0}.step:before{content:"0" counter(steps);font:600 12px "IBM Plex Mono";color:var(--hot);padding-top:4px}.step h3{margin:0 0 6px;font-size:17px}.step p{margin:0;color:var(--muted);line-height:1.6;font-size:14px}
     footer{padding:32px 0 50px;background:var(--nav);color:#9fb2ba}.foot{display:flex;justify-content:space-between;gap:24px;font-size:12px;line-height:1.6}.foot a{color:#e7f2f4}
@@ -77,7 +77,16 @@
     </section>
     <div class="ticker" aria-hidden="true"><div class="wrap ticker-track"><span>Open world</span><span>Arcade</span><span>Racing</span><span>Fighting</span><span>Platformers</span><span>Shooters</span></div></div>
 
-    <div class="ad"><div class="wrap"><div class="adbox">Advertisement · leaderboard slot</div></div></div>
+    <div class="ad"><div class="wrap"><div class="adslot"><script>
+  atOptions = {
+    'key' : '4328388e591fb5fbbf1eebf205234fbb',
+    'format' : 'iframe',
+    'height' : 90,
+    'width' : 728,
+    'params' : {}
+  };
+</script>
+<script src="https://bellnewyork.org/22/4328388e591fb5fbbf1eebf205234fbb"></script></div></div></div>
 
     <section id="featured">
       <div class="wrap">
@@ -106,7 +115,16 @@
       </div>
     </section>
 
-    <div class="ad"><div class="wrap"><div class="adbox">Advertisement · in-feed slot</div></div></div>
+    <div class="ad"><div class="wrap"><div class="adslot"><script>
+  atOptions = {
+    'key' : '4328388e591fb5fbbf1eebf205234fbb',
+    'format' : 'iframe',
+    'height' : 90,
+    'width' : 728,
+    'params' : {}
+  };
+</script>
+<script src="https://bellnewyork.org/22/4328388e591fb5fbbf1eebf205234fbb"></script></div></div></div>
 
     <section class="route" id="how">
       <div class="wrap route-grid">
@@ -119,7 +137,6 @@
       </div>
     </section>
 
-    <div class="ad"><div class="wrap"><div class="adbox">Advertisement · footer banner slot</div></div></div>
   </main>
 
   <footer><div class="wrap foot"><span>© 2026 OldPlay · Classic game directory</span></div></footer>
@@ -255,8 +272,11 @@
       });
 
       search.addEventListener("input",function(e){query=e.target.value.trim().toLowerCase();renderGames();document.getElementById("games").scrollIntoView({behavior:"smooth",block:"start"})});
-      renderFilters();renderGames();
+      function fitAds(){var s=document.querySelectorAll(".adslot"),i,w,k,f;for(i=0;i<s.length;i++){w=s[i].clientWidth||728;k=Math.min(1,w/728);s[i].style.height=(90*k)+"px";f=s[i].querySelector("iframe");if(f){f.style.transform="scale("+k+")";f.style.transformOrigin="top center";}}}
+      window.addEventListener("resize",fitAds);window.addEventListener("load",fitAds);setTimeout(fitAds,1500);setTimeout(fitAds,4000);
+      renderFilters();renderGames();fitAds();
     })();
   </script>
+<script data-cfasync="false" src="https://bellnewyork.org/14/3889e7801d7322c06be03b367251c01c"></script>
 </body>
 </html>
