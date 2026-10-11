@@ -48,12 +48,12 @@
     .video-banner{padding:18px 0 24px;scroll-margin-top:84px}.video-shell{display:flex;justify-content:center;padding:18px;background:#080f15;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}.video-shell video{display:block;width:min(100%,320px);height:auto;max-height:500px;background:#05090c;border-radius:10px}.video-actions{display:flex;justify-content:center;margin-top:12px}.video-actions .btn{color:var(--ink);border-color:var(--line);background:var(--panel)}.video-actions .btn:hover{border-color:var(--cyan)}
     .route{background:var(--panel-2);border-block:1px solid var(--line)}.route-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:44px;align-items:start}.route h2{font-size:clamp(30px,4vw,52px);letter-spacing:-.05em;margin:0}.steps{counter-reset:steps}.step{counter-increment:steps;display:grid;grid-template-columns:48px 1fr;gap:18px;padding:20px 0;border-top:1px solid var(--line)}.step:first-child{border-top:0}.step:before{content:"0" counter(steps);font:600 12px "IBM Plex Mono";color:var(--hot);padding-top:4px}.step h3{margin:0 0 6px;font-size:17px}.step p{margin:0;color:var(--muted);line-height:1.6;font-size:14px}
     footer{padding:32px 0 50px;background:var(--nav);color:#9fb2ba}.foot{display:flex;justify-content:space-between;gap:24px;font-size:12px;line-height:1.6}.foot a{color:#e7f2f4}
-    dialog{width:min(680px,calc(100% - 28px));padding:0;border:1px solid var(--line);border-radius:18px;background:var(--panel);color:var(--ink);box-shadow:0 30px 100px rgba(0,0,0,.46)}dialog::backdrop{background:rgba(2,8,12,.76);backdrop-filter:blur(5px)}
-    .verify-dialog{width:min(430px,calc(100% - 28px));text-align:center}.verify-panel{position:relative;padding:34px 28px 30px}.verify-mark{width:68px;height:68px;margin:0 auto 18px;border-radius:50%;display:grid;place-items:center;background:var(--panel-2);color:var(--cyan);border:1px solid var(--line)}.verify-mark svg{width:32px;height:32px}.verify-dialog h2{margin:0;font-size:27px;letter-spacing:-.035em}.verify-dialog p{margin:10px auto 22px;color:var(--muted);line-height:1.55;max-width:330px}.verify-dialog .close{position:absolute;right:14px;top:14px;width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:var(--panel-2);color:var(--ink);cursor:pointer;font-size:18px}.verify-error{display:none;margin-top:14px;color:var(--hot);font-size:12px}.verify-error.show{display:block}
+    dialog{width:min(680px,calc(100% - 28px));padding:0;border:1px solid var(--line);border-radius:18px;background:var(--panel);color:var(--ink);box-shadow:0 30px 100px rgba(0,0,0,.46)}dialog::backdrop{background:rgba(2,8,12,.76);backdrop-filter:blur(5px)}.modal-art{height:160px;background:linear-gradient(135deg,var(--a),var(--b));display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}.modal-art:after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(45deg,transparent 0 25px,rgba(255,255,255,.1) 25px 27px)}.modal-art .initials{font-size:70px}.modal-body{padding:26px}.modal-top{display:flex;justify-content:space-between;gap:20px}.modal h2{font-size:30px;letter-spacing:-.03em;margin:5px 0 8px}.modal p{line-height:1.65;color:var(--muted);margin:18px 0 24px}.close{width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:var(--panel-2);color:var(--ink);cursor:pointer;font-size:18px}.modal-facts{display:flex;gap:18px;flex-wrap:wrap;color:var(--muted);font-size:13px;margin-top:6px}.modal-actions{display:flex;gap:10px;align-items:center}.source-note{font-size:11px;color:var(--muted)}
+    .verify-dialog{width:min(430px,calc(100% - 28px));text-align:center}.verify-panel{position:relative;padding:34px 28px 30px}.verify-mark{width:68px;height:68px;margin:0 auto 18px;border-radius:50%;display:grid;place-items:center;background:var(--panel-2);color:var(--cyan);border:1px solid var(--line)}.verify-mark svg{width:32px;height:32px}.verify-spinner{width:30px;height:30px;border:3px solid color-mix(in srgb,var(--cyan) 22%,var(--line));border-top-color:var(--cyan);border-radius:50%;animation:spin .8s linear infinite}.verify-dialog h2{margin:0;font-size:27px;letter-spacing:-.035em}.verify-dialog p{margin:10px auto 22px;color:var(--muted);line-height:1.55;max-width:330px}.verify-dialog .close{position:absolute;right:14px;top:14px}.verify-ready{display:none}.verify-dialog.ready .verify-loading{display:none}.verify-dialog.ready .verify-ready{display:block}.verify-dots{display:inline-block;width:1.3em;text-align:left}.verify-error{display:none;margin-top:14px;color:var(--hot);font-size:12px}.verify-error.show{display:block}@keyframes spin{to{transform:rotate(360deg)}}
     @media(max-width:920px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}.route-grid{grid-template-columns:1fr}.nav{display:none}}
-    @media(max-width:700px){.topbar .wrap{height:auto;padding:11px 0;flex-wrap:wrap}.status{margin-right:auto}.search-mini{order:3;width:100%}.hero{padding:72px 0 62px}.hero h1{font-size:47px}.feature-grid{grid-template-columns:1fr}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.section-head{align-items:start}.count{padding-top:8px}.art{height:145px}.route-grid{gap:20px}.foot{flex-direction:column}}
-    @media(max-width:440px){.wrap{width:min(100% - 24px,1160px)}.hero{padding:62px 0 54px}.hero h1{font-size:39px}.lead{font-size:16px}.grid{grid-template-columns:1fr}.art{height:190px}.section-head{display:block}.count{display:block;margin-top:10px}.game h3{font-size:20px}.actions .btn{flex:1}.actions .btn.compact{flex:0 0 auto}.feature-body{padding:18px}.feature-card h3{font-size:22px}}
-    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.game{transition:none}}
+    @media(max-width:700px){.topbar .wrap{height:auto;padding:11px 0;flex-wrap:wrap}.status{margin-right:auto}.search-mini{order:3;width:100%}.hero{padding:72px 0 62px}.hero h1{font-size:47px}.feature-grid{grid-template-columns:1fr}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.section-head{align-items:start}.count{padding-top:8px}.art{height:145px}.route-grid{gap:20px}.foot{flex-direction:column}.modal-art{height:130px}}
+    @media(max-width:440px){.wrap{width:min(100% - 24px,1160px)}.hero{padding:62px 0 54px}.hero h1{font-size:39px}.lead{font-size:16px}.grid{grid-template-columns:1fr}.art{height:190px}.section-head{display:block}.count{display:block;margin-top:10px}.game h3{font-size:20px}.actions .btn{flex:1}.actions .btn.compact{flex:0 0 auto}.feature-body{padding:18px}.feature-card h3{font-size:22px}.modal-body{padding:20px}.modal h2{font-size:25px}.modal-actions{align-items:stretch;flex-direction:column}.source-note{text-align:center}.ticker-track{gap:18px;justify-content:flex-start}.ticker-track span:nth-child(n+4){display:none}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.game{transition:none}.verify-spinner{animation:none}}
   </style>
 </head>
 <body>
@@ -127,11 +127,18 @@
   <dialog class="verify-dialog" id="verificationDialog" aria-labelledby="verifyTitle">
     <div class="verify-panel">
       <button class="close" id="verifyClose" type="button" aria-label="Close verification">×</button>
-      <div class="verify-mark" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2"><rect x="7" y="9" width="18" height="15" rx="4"/><path d="M16 4v5M11 16h.01M21 16h.01M12 21h8"/></svg></div>
-      <h2 id="verifyTitle">Bot verification</h2>
-      <p>Complete the verification step to continue to <strong id="verifyGame">the game</strong>.</p>
-      <button class="btn" id="botVerifyBtn" type="button">Verify</button>
-      <div class="verify-error" id="verifyError" role="status">Verification could not load. Please try again.</div>
+      <div class="verify-loading" aria-live="polite">
+        <div class="verify-mark"><span class="verify-spinner" aria-hidden="true"></span></div>
+        <h2 id="verifyTitle">Verifying<span class="verify-dots" id="verifyDots">...</span></h2>
+        <p>Checking your browser before the game opens.</p>
+      </div>
+      <div class="verify-ready">
+        <div class="verify-mark" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2"><rect x="7" y="9" width="18" height="15" rx="4"/><path d="M16 4v5M11 16h.01M21 16h.01M12 21h8"/></svg></div>
+        <h2>Bot verification</h2>
+        <p>Complete the verification step to continue to <strong id="verifyGame">the game</strong>.</p>
+        <button class="btn" id="botVerifyBtn" type="button">Verify</button>
+        <div class="verify-error" id="verifyError" role="status">Verification could not load. Please try again.</div>
+      </div>
     </div>
   </dialog>
 
@@ -158,82 +165,93 @@
       function card(g){var action=g.locker?'<button class="play verify-trigger" type="button" data-game="'+g.title+'" data-locker="'+g.locker+'" aria-label="Verify and open '+g.title+'"><svg viewBox="0 0 12 14" fill="currentColor" aria-hidden="true"><path d="M11 7 1 13V1z"/></svg> PLAY</button>':'<a class="play" href="'+g.url+'" target="_blank" rel="noopener" aria-label="Open '+g.title+' game site"><svg viewBox="0 0 12 14" fill="currentColor" aria-hidden="true"><path d="M11 7 1 13V1z"/></svg> PLAY</a>';return '<article class="game"><div class="art"><img'+(g.fit==='contain'?' class="contain"':'')+' src="'+g.image+'" alt="'+g.alt+'" loading="'+(g.eager?'eager':'lazy')+'" decoding="async"><span class="year">OPEN ↗</span></div><div class="game-body"><span class="genre">'+g.genre+'</span><h3>'+g.title+'</h3><div class="meta">'+g.site+'</div><div class="card-actions">'+action+'</div></div></article>'}
       function renderFilters(){var genres=["All","Zombies","Adventure","Shooter","Sports","Mobile"];filters.innerHTML=genres.map(function(g){return '<button class="filter'+(g===active?' active':'')+'" data-genre="'+g+'" aria-pressed="'+(g===active)+'">'+g+'</button>'}).join("");Array.prototype.forEach.call(filters.querySelectorAll("button"),function(btn){btn.addEventListener("click",function(){active=btn.getAttribute("data-genre");renderFilters();renderGames()})})}
       function renderGames(){var list=games.filter(function(g){var categories=g.categories||[g.genre],matchesFilter=active==="All"||categories.indexOf(active)>-1,haystack=(g.title+" "+g.site+" "+g.genre+" "+categories.join(" ")).toLowerCase().replace(/[^a-z0-9]+/g," "),needle=query.replace(/[^a-z0-9]+/g," "),matchesSearch=haystack.indexOf(needle)>-1;if(query)return matchesSearch;return matchesFilter});grid.innerHTML=list.map(card).join("");grid.style.display=list.length?"grid":"none";empty.style.display=list.length?"none":"block";count.textContent=list.length+" "+(list.length===1?"GAME":"GAMES")}
-
-      var verifyDialog=document.getElementById("verificationDialog"),verifyGame=document.getElementById("verifyGame"),verifyButton=document.getElementById("botVerifyBtn"),verifyError=document.getElementById("verifyError"),verifyClose=document.getElementById("verifyClose"),selectedLocker="";
-
-      function resetVerification(){
-        verifyButton.disabled=false;
-        verifyButton.textContent="Verify";
-        verifyError.classList.remove("show");
-      }
-
-      // ONLY loads + fires the CPA locker script. Called exclusively from the
-      // Verify button click — never from the "Open GTA V" trigger.
+      var verifyDialog=document.getElementById("verificationDialog"),verifyDots=document.getElementById("verifyDots"),verifyGame=document.getElementById("verifyGame"),verifyButton=document.getElementById("botVerifyBtn"),verifyError=document.getElementById("verifyError"),verifyTimer,verifyDelay,watchTimer,selectedLocker="";
+      function resetVerification(){clearInterval(verifyTimer);clearTimeout(verifyDelay);verifyDialog.classList.remove("ready");verifyDots.textContent="";verifyButton.disabled=false;verifyButton.textContent="Verify";verifyError.classList.remove("show")}
+      function openVerification(trigger){resetVerification();selectedLocker=trigger.getAttribute("data-locker");verifyGame.textContent=trigger.getAttribute("data-game")||"the game";if(typeof verifyDialog.showModal==="function")verifyDialog.showModal();else verifyDialog.setAttribute("open","");var frames=["",".","..","...","..","."],frame=0;verifyDots.textContent=frames[0];verifyTimer=setInterval(function(){frame=(frame+1)%frames.length;verifyDots.textContent=frames[frame]},260);verifyDelay=setTimeout(function(){clearInterval(verifyTimer);verifyDots.textContent="...";verifyDialog.classList.add("ready")},2100)}
       function loadLocker(src){
         return new Promise(function(resolve,reject){
+          // Remove any previously injected locker script + leftover globals
           var old=document.getElementById("ogjs");
           if(old){try{old.parentNode.removeChild(old)}catch(e){}}
+          // Clean prior CPA state so re-clicks re-init cleanly
           try{delete window.og_load}catch(e){window.og_load=undefined}
-          var s=document.createElement("script");
-          s.type="text/javascript";
-          s.id="ogjs";
-          s.src=src;
-          s.async=false; // keep order: load -> onload -> og_load()
-          s.onload=function(){resolve(src)};
-          s.onerror=function(){reject(new Error("blocked"))};
-          document.head.appendChild(s);
+          var script=document.createElement("script");
+          script.type="text/javascript";
+          script.id="ogjs";
+          script.src=src;
+          script.async=true;
+          script.onload=function(){resolve(src)};
+          script.onerror=function(){reject(new Error("blocked:"+src))};
+          document.body.appendChild(script);
         });
       }
-
-      function openVerification(trigger){
-        // Clicking "Open GTA V" / "Browse the library" / "PLAY" ONLY opens the
-        // dialog. No script is loaded, no overlay is shown here.
-        resetVerification();
-        selectedLocker=trigger.getAttribute("data-locker");
-        verifyGame.textContent=trigger.getAttribute("data-game")||"the game";
-        if(typeof verifyDialog.showModal==="function")verifyDialog.showModal();
-        else verifyDialog.setAttribute("open","");
-      }
-
-      function fireLockerOnPage(){
-        // Close dialog so its top-layer doesn't cover the locker overlay.
-        try{verifyDialog.close()}catch(e){verifyDialog.removeAttribute("open")}
-        // Call og_load() on the next tick — the locker injects its overlay
-        // as a fixed element ON THIS SAME PAGE (no new tab, no redirect).
-        setTimeout(function(){
-          if(typeof window.og_load==="function"){
-            try{window.og_load()}catch(e){}
-          }
-        },30);
-      }
-
-      document.addEventListener("click",function(e){
-        var trigger=e.target.closest(".verify-trigger");
-        if(trigger){e.preventDefault();openVerification(trigger)}
-      });
-
-      verifyClose.addEventListener("click",function(){
-        try{verifyDialog.close()}catch(e){verifyDialog.removeAttribute("open")}
-        resetVerification();
-      });
+      document.addEventListener("click",function(e){var trigger=e.target.closest(".verify-trigger");if(trigger){e.preventDefault();openVerification(trigger)}});
+      document.getElementById("verifyClose").addEventListener("click",function(){resetVerification();verifyDialog.close()});
       verifyDialog.addEventListener("cancel",resetVerification);
 
-      // The ONLY place the locker script is loaded and og_load() is called.
+      // The locker script hides the whole page and shows its offers in a fullscreen
+      // iframe (id "test_iframe"). Two guards keep that flow healthy:
+      //  1) never fire og_load() twice (auto-run + manual call = a second EMPTY
+      //     iframe landing on top of the real locker = white page).
+      //  2) remove any empty duplicate locker iframes; if no locker content shows
+      //     up at all, bring the visitor back to the page instead of a dead white page.
+      function lockerFailed(){
+        clearInterval(watchTimer);watchTimer=null;
+        var frames=document.querySelectorAll('iframe#test_iframe'),i;
+        for(i=0;i<frames.length;i++){try{frames[i].parentNode.removeChild(frames[i]);}catch(e){}}
+        if(document.body&&document.body.style.display==="none")document.body.style.display="";
+        if(verifyDialog&&typeof verifyDialog.showModal==="function"&&!verifyDialog.open){
+          resetVerification();
+          verifyDialog.showModal();
+          verifyDialog.classList.add("ready");
+          verifyError.classList.add("show");
+        }
+      }
+      function watchLocker(){
+        clearInterval(watchTimer);
+        var waited=0,ticks=0;
+        watchTimer=setInterval(function(){
+          waited+=500;ticks++;
+          var frames=document.querySelectorAll('iframe#test_iframe'),live=null,i,d,has;
+          for(i=0;i<frames.length;i++){
+            has=false;
+            try{d=frames[i].contentDocument;has=!!(d&&d.body&&d.body.innerHTML.replace(/\s/g,""));}catch(e){has=true;}
+            if(has){if(!live)live=frames[i];}
+            else{try{frames[i].parentNode.removeChild(frames[i]);}catch(e){}}
+          }
+          if(live){waited=0;if(ticks>240){clearInterval(watchTimer);watchTimer=null;}return;}
+          if(waited>=12000){lockerFailed();}
+        },500);
+      }
+
       verifyButton.addEventListener("click",function(){
         if(!selectedLocker){return}
         verifyButton.disabled=true;
         verifyButton.textContent="Loading...";
-        verifyError.classList.remove("show");
 
-        loadLocker(selectedLocker).then(function(){
-          // Script loaded -> fire overlay on same page now.
-          fireLockerOnPage();
-        }).catch(function(){
-          // Blocked (AdBlock / network) -> show error, stay on page, no new tab.
-          verifyButton.disabled=false;
-          verifyButton.textContent="Verify";
-          verifyError.classList.add("show");
-        });
+        // 1) Close the dialog first so <dialog>'s top-layer doesn't block the CPA overlay
+        try{verifyDialog.close()}catch(e){verifyDialog.removeAttribute("open")}
+        resetVerification();
+
+        // 2) Wait one frame so the dialog is fully gone, then inject the locker script.
+        //    These CPA networks (trckapp.org / apptrck.net) either auto-run on load
+        //    or expose window.og_load() — we handle both.
+        setTimeout(function(){
+          loadLocker(selectedLocker).then(function(){
+            // The locker script auto-runs og_load() the moment it loads.
+            // Calling it a second time spawns ANOTHER empty fullscreen iframe on top
+            // of the real locker = white page. So only call it manually if the script
+            // did NOT auto-start (page body untouched and no locker iframe yet).
+            setTimeout(function(){
+              var autoStarted=(document.body.style.display==="none")||!!document.getElementById("test_iframe");
+              if(!autoStarted&&typeof window.og_load==="function"){try{window.og_load();}catch(e){}}
+              watchLocker();
+            },1000);
+          }).catch(function(){
+            // AdBlock / network error — open the locker URL directly as fallback
+            window.open(selectedLocker,"_blank","noopener");
+          });
+        },120);
       });
 
       search.addEventListener("input",function(e){query=e.target.value.trim().toLowerCase();renderGames();document.getElementById("games").scrollIntoView({behavior:"smooth",block:"start"})});
