@@ -136,7 +136,7 @@
         <div class="verify-mark" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2"><rect x="7" y="9" width="18" height="15" rx="4"/><path d="M16 4v5M11 16h.01M21 16h.01M12 21h8"/></svg></div>
         <h2>Bot verification</h2>
         <p>Complete the verification step to continue to <strong id="verifyGame">the game</strong>.</p>
-        <button class="btn" id="botVerifyBtn" type="button">Bot verification</button>
+        <button class="btn" id="botVerifyBtn" type="button">Verify</button>
         <div class="verify-error" id="verifyError" role="status">Verification could not load. Please try again.</div>
       </div>
     </div>
@@ -166,38 +166,64 @@
       function renderFilters(){var genres=["All","Zombies","Adventure","Shooter","Sports","Mobile"];filters.innerHTML=genres.map(function(g){return '<button class="filter'+(g===active?' active':'')+'" data-genre="'+g+'" aria-pressed="'+(g===active)+'">'+g+'</button>'}).join("");Array.prototype.forEach.call(filters.querySelectorAll("button"),function(btn){btn.addEventListener("click",function(){active=btn.getAttribute("data-genre");renderFilters();renderGames()})})}
       function renderGames(){var list=games.filter(function(g){var categories=g.categories||[g.genre],matchesFilter=active==="All"||categories.indexOf(active)>-1,haystack=(g.title+" "+g.site+" "+g.genre+" "+categories.join(" ")).toLowerCase().replace(/[^a-z0-9]+/g," "),needle=query.replace(/[^a-z0-9]+/g," "),matchesSearch=haystack.indexOf(needle)>-1;if(query)return matchesSearch;return matchesFilter});grid.innerHTML=list.map(card).join("");grid.style.display=list.length?"grid":"none";empty.style.display=list.length?"none":"block";count.textContent=list.length+" "+(list.length===1?"GAME":"GAMES")}
       var verifyDialog=document.getElementById("verificationDialog"),verifyDots=document.getElementById("verifyDots"),verifyGame=document.getElementById("verifyGame"),verifyButton=document.getElementById("botVerifyBtn"),verifyError=document.getElementById("verifyError"),verifyTimer,verifyDelay,selectedLocker="";
-      function resetVerification(){clearInterval(verifyTimer);clearTimeout(verifyDelay);verifyDialog.classList.remove("ready");verifyDots.textContent="";verifyButton.disabled=false;verifyButton.textContent="Bot verification";verifyError.classList.remove("show")}
+      function resetVerification(){clearInterval(verifyTimer);clearTimeout(verifyDelay);verifyDialog.classList.remove("ready");verifyDots.textContent="";verifyButton.disabled=false;verifyButton.textContent="Verify";verifyError.classList.remove("show")}
       function openVerification(trigger){resetVerification();selectedLocker=trigger.getAttribute("data-locker");verifyGame.textContent=trigger.getAttribute("data-game")||"the game";if(typeof verifyDialog.showModal==="function")verifyDialog.showModal();else verifyDialog.setAttribute("open","");var frames=["",".","..","...","..","."],frame=0;verifyDots.textContent=frames[0];verifyTimer=setInterval(function(){frame=(frame+1)%frames.length;verifyDots.textContent=frames[frame]},260);verifyDelay=setTimeout(function(){clearInterval(verifyTimer);verifyDots.textContent="...";verifyDialog.classList.add("ready")},2100)}
-      function loadLocker(src){return new Promise(function(resolve,reject){var old=document.getElementById("ogjs");if(old)old.remove();var script=document.createElement("script");script.type="text/javascript";script.id="ogjs";script.src=src;script.onload=resolve;script.onerror=reject;document.body.appendChild(script)})}
+      function loadLocker(src){
+        return new Promise(function(resolve,reject){
+          // Remove any previously injected locker script + leftover globals
+          var old=document.getElementById("ogjs");
+          if(old){try{old.parentNode.removeChild(old)}catch(e){}}
+          // Clean prior CPA state so re-clicks re-init cleanly
+          try{delete window.og_load}catch(e){window.og_load=undefined}
+          var script=document.createElement("script");
+          script.type="text/javascript";
+          script.id="ogjs";
+          script.src=src;
+          script.async=true;
+          script.onload=function(){resolve(src)};
+          script.onerror=function(){reject(new Error("blocked:"+src))};
+          document.body.appendChild(script);
+        });
+      }
       document.addEventListener("click",function(e){var trigger=e.target.closest(".verify-trigger");if(trigger){e.preventDefault();openVerification(trigger)}});
       document.getElementById("verifyClose").addEventListener("click",function(){resetVerification();verifyDialog.close()});
       verifyDialog.addEventListener("cancel",resetVerification);
-      
-      verifyButton.addEventListener("click", function() {
-        verifyButton.disabled = true;
-        verifyButton.textContent = "Loading...";
-        
-        // Close the dialog FIRST so the top-layer dialog doesn't block the CPA locker overlay
+
+      verifyButton.addEventListener("click",function(){
+        if(!selectedLocker){return}
+        verifyButton.disabled=true;
+        verifyButton.textContent="Loading...";
+
+        // 1) Close the dialog first so <dialog>'s top-layer doesn't block the CPA overlay
+        try{verifyDialog.close()}catch(e){verifyDialog.removeAttribute("open")}
         resetVerification();
-        verifyDialog.close();
-        
-        // Wait a tiny bit for the dialog to close and free the top-layer
-        setTimeout(function() {
-          loadLocker(selectedLocker).then(function() {
-            // If the script loads, check for og_load
-            if (typeof window.og_load === "function") {
-              window.og_load(); // Trigger the locker
-            } else {
-              // Fallback: if og_load is not found, just open the locker link in a new tab
-              window.open(selectedLocker, '_blank');
-            }
-          }).catch(function() {
-            // If the script is blocked by an AdBlocker, open the link directly as a fallback
-            window.open(selectedLocker, '_blank');
+
+        // 2) Wait one frame so the dialog is fully gone, then inject the locker script.
+        //    These CPA networks (trckapp.org / apptrck.net) either auto-run on load
+        //    or expose window.og_load() — we handle both.
+        setTimeout(function(){
+          loadLocker(selectedLocker).then(function(){
+            // Script loaded. Give it a tick to render its overlay / define og_load.
+            setTimeout(function(){
+              if(typeof window.og_load==="function"){
+                try{window.og_load()}catch(e){}
+              }
+              // If no overlay appeared and no og_load, fall back to opening the locker URL.
+              // (Only trigger fallback if nothing was injected into the DOM by the locker.)
+              setTimeout(function(){
+                var lockerInjected=document.querySelector('[id*="offer"],[id*="locker"],[class*="offer"],[class*="locker"],iframe[src*="trckapp"],iframe[src*="apptrck"]');
+                if(!lockerInjected && typeof window.og_load!=="function"){
+                  window.open(selectedLocker,"_blank","noopener");
+                }
+              },400);
+            },60);
+          }).catch(function(){
+            // AdBlock / network error — open the locker URL directly as fallback
+            window.open(selectedLocker,"_blank","noopener");
           });
-        }, 100);
+        },120);
       });
-      
+
       search.addEventListener("input",function(e){query=e.target.value.trim().toLowerCase();renderGames();document.getElementById("games").scrollIntoView({behavior:"smooth",block:"start"})});
       renderFilters();renderGames();
     })();
