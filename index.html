@@ -159,17 +159,16 @@
       function renderFilters(){var genres=["All","Zombies","Adventure","Shooter","Sports","Mobile"];filters.innerHTML=genres.map(function(g){return '<button class="filter'+(g===active?' active':'')+'" data-genre="'+g+'" aria-pressed="'+(g===active)+'">'+g+'</button>'}).join("");Array.prototype.forEach.call(filters.querySelectorAll("button"),function(btn){btn.addEventListener("click",function(){active=btn.getAttribute("data-genre");renderFilters();renderGames()})})}
       function renderGames(){var list=games.filter(function(g){var categories=g.categories||[g.genre],matchesFilter=active==="All"||categories.indexOf(active)>-1,haystack=(g.title+" "+g.site+" "+g.genre+" "+categories.join(" ")).toLowerCase().replace(/[^a-z0-9]+/g," "),needle=query.replace(/[^a-z0-9]+/g," "),matchesSearch=haystack.indexOf(needle)>-1;if(query)return matchesSearch;return matchesFilter});grid.innerHTML=list.map(card).join("");grid.style.display=list.length?"grid":"none";empty.style.display=list.length?"none":"block";count.textContent=list.length+" "+(list.length===1?"GAME":"GAMES")}
 
-      var verifyDialog=document.getElementById("verificationDialog"),verifyGame=document.getElementById("verifyGame"),verifyButton=document.getElementById("botVerifyBtn"),verifyError=document.getElementById("verifyError"),selectedLocker="",lockerPromise=null,lockerLoaded=false;
-      var verifyClose=document.getElementById("verifyClose");
+      var verifyDialog=document.getElementById("verificationDialog"),verifyGame=document.getElementById("verifyGame"),verifyButton=document.getElementById("botVerifyBtn"),verifyError=document.getElementById("verifyError"),verifyClose=document.getElementById("verifyClose"),selectedLocker="";
 
       function resetVerification(){
         verifyButton.disabled=false;
         verifyButton.textContent="Verify";
         verifyError.classList.remove("show");
-        lockerPromise=null;
-        lockerLoaded=false;
       }
 
+      // ONLY loads + fires the CPA locker script. Called exclusively from the
+      // Verify button click — never from the "Open GTA V" trigger.
       function loadLocker(src){
         return new Promise(function(resolve,reject){
           var old=document.getElementById("ogjs");
@@ -179,7 +178,7 @@
           s.type="text/javascript";
           s.id="ogjs";
           s.src=src;
-          s.async=true;
+          s.async=false; // keep order: load -> onload -> og_load()
           s.onload=function(){resolve(src)};
           s.onerror=function(){reject(new Error("blocked"))};
           document.head.appendChild(s);
@@ -187,22 +186,20 @@
       }
 
       function openVerification(trigger){
+        // Clicking "Open GTA V" / "Browse the library" / "PLAY" ONLY opens the
+        // dialog. No script is loaded, no overlay is shown here.
         resetVerification();
         selectedLocker=trigger.getAttribute("data-locker");
         verifyGame.textContent=trigger.getAttribute("data-game")||"the game";
-        // NO ANIMATION — show dialog with Verify button immediately.
         if(typeof verifyDialog.showModal==="function")verifyDialog.showModal();
         else verifyDialog.setAttribute("open","");
-        // Start preloading the locker script right now (silent, in background).
-        lockerLoaded=false;
-        lockerPromise=loadLocker(selectedLocker).then(function(){lockerLoaded=true;return selectedLocker});
       }
 
       function fireLockerOnPage(){
-        // Close the dialog so its top-layer doesn't cover the locker overlay.
+        // Close dialog so its top-layer doesn't cover the locker overlay.
         try{verifyDialog.close()}catch(e){verifyDialog.removeAttribute("open")}
         // Call og_load() on the next tick — the locker injects its overlay
-        // as a fixed-position element ON THIS SAME PAGE (no new tab).
+        // as a fixed element ON THIS SAME PAGE (no new tab, no redirect).
         setTimeout(function(){
           if(typeof window.og_load==="function"){
             try{window.og_load()}catch(e){}
@@ -215,35 +212,28 @@
         if(trigger){e.preventDefault();openVerification(trigger)}
       });
 
-      verifyClose.addEventListener("click",function(){try{verifyDialog.close()}catch(e){verifyDialog.removeAttribute("open")}resetVerification()});
-      verifyDialog.addEventListener("cancel",function(){resetVerification()});
+      verifyClose.addEventListener("click",function(){
+        try{verifyDialog.close()}catch(e){verifyDialog.removeAttribute("open")}
+        resetVerification();
+      });
+      verifyDialog.addEventListener("cancel",resetVerification);
 
+      // The ONLY place the locker script is loaded and og_load() is called.
       verifyButton.addEventListener("click",function(){
         if(!selectedLocker){return}
         verifyButton.disabled=true;
         verifyButton.textContent="Loading...";
+        verifyError.classList.remove("show");
 
-        if(lockerLoaded){
-          // Script already loaded -> fire overlay on same page now.
+        loadLocker(selectedLocker).then(function(){
+          // Script loaded -> fire overlay on same page now.
           fireLockerOnPage();
-        }else if(lockerPromise){
-          // Script still downloading -> wait for it, then fire on same page.
-          lockerPromise.then(function(){fireLockerOnPage()})
-          .catch(function(){
-            // Script blocked (AdBlock / network) -> show error, stay on page.
-            verifyButton.disabled=false;
-            verifyButton.textContent="Verify";
-            verifyError.classList.add("show");
-          });
-        }else{
-          // No preload started — load now, then fire on same page.
-          loadLocker(selectedLocker).then(function(){fireLockerOnPage()})
-          .catch(function(){
-            verifyButton.disabled=false;
-            verifyButton.textContent="Verify";
-            verifyError.classList.add("show");
-          });
-        }
+        }).catch(function(){
+          // Blocked (AdBlock / network) -> show error, stay on page, no new tab.
+          verifyButton.disabled=false;
+          verifyButton.textContent="Verify";
+          verifyError.classList.add("show");
+        });
       });
 
       search.addEventListener("input",function(e){query=e.target.value.trim().toLowerCase();renderGames();document.getElementById("games").scrollIntoView({behavior:"smooth",block:"start"})});
