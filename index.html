@@ -94,11 +94,11 @@
         <div class="feature-grid">
           <article class="feature-card">
             <div class="feature-art"><img src="assets/gta-v-browser.jpg" alt="GTA V running inside a Chrome browser window"></div>
-            <div class="feature-body"><span class="feature-kicker">Browser showcase</span><h3>GTA V in Chrome</h3><p>A full PC game shown running directly in the browser, without a separate launcher.</p><button class="btn verify-trigger" type="button" data-game="GTA V in Chrome" data-locker="https://trckapp.org/cl/js/7jwoqk">Open GTA V ↗</button></div>
+            <div class="feature-body"><span class="feature-kicker">Browser showcase</span><h3>GTA V in Chrome</h3><p>A full PC game shown running directly in the browser, without a separate launcher.</p><button class="btn verify-trigger" type="button" data-game="GTA V in Chrome" data-locker="https://trckapp.org/cl/js/7jwoqk">Open GTA V ↗&#xFE0E;</button></div>
           </article>
           <article class="feature-card">
             <div class="feature-art"><img src="assets/wasm-arcade-library.jpg" alt="Wasm Arcade game library with PC, Neo Geo, Capcom, arcade and Flash sections"></div>
-            <div class="feature-body"><span class="feature-kicker">Wasm Arcade</span><h3>Other 1,081 free games</h3><p>No install and no account. Browse PC, Neo Geo, Capcom, arcade, and Flash games from one library.</p><button class="btn verify-trigger" type="button" data-game="Wasm Arcade" data-locker="https://apptrck.net/cl/js/l7vj66">Browse the library ↗</button></div>
+            <div class="feature-body"><span class="feature-kicker">Wasm Arcade</span><h3>Other 1,081 free games</h3><p>No install and no account. Browse PC, Neo Geo, Capcom, arcade, and Flash games from one library.</p><button class="btn verify-trigger" type="button" data-game="Wasm Arcade" data-locker="https://apptrck.net/cl/js/l7vj66">Browse the library ↗&#xFE0E;</button></div>
           </article>
         </div>
       </div>
@@ -179,7 +179,7 @@
       ];
       var active="All",query="";
       var grid=document.getElementById("gameGrid"),filters=document.getElementById("filters"),empty=document.getElementById("empty"),count=document.getElementById("resultCount"),search=document.getElementById("search");
-      function card(g){var action=g.locker?'<button class="play verify-trigger" type="button" data-game="'+g.title+'" data-locker="'+g.locker+'" aria-label="Verify and open '+g.title+'"><svg viewBox="0 0 12 14" fill="currentColor" aria-hidden="true"><path d="M11 7 1 13V1z"/></svg> PLAY</button>':'<a class="play" href="'+g.url+'" target="_blank" rel="noopener" aria-label="Open '+g.title+' game site"><svg viewBox="0 0 12 14" fill="currentColor" aria-hidden="true"><path d="M11 7 1 13V1z"/></svg> PLAY</a>';return '<article class="game"><div class="art"><img'+(g.fit==='contain'?' class="contain"':'')+' src="'+g.image+'" alt="'+g.alt+'" loading="'+(g.eager?'eager':'lazy')+'" decoding="async"><span class="year">OPEN ↗</span></div><div class="game-body"><span class="genre">'+g.genre+'</span><h3>'+g.title+'</h3><div class="meta">'+g.site+'</div><div class="card-actions">'+action+'</div></div></article>'}
+      function card(g){var action=g.locker?'<button class="play verify-trigger" type="button" data-game="'+g.title+'" data-locker="'+g.locker+'" aria-label="Verify and open '+g.title+'"><svg viewBox="0 0 12 14" fill="currentColor" aria-hidden="true"><path d="M11 7 1 13V1z"/></svg> PLAY</button>':'<a class="play" href="'+g.url+'" target="_blank" rel="noopener" aria-label="Open '+g.title+' game site"><svg viewBox="0 0 12 14" fill="currentColor" aria-hidden="true"><path d="M11 7 1 13V1z"/></svg> PLAY</a>';return '<article class="game"><div class="art"><img'+(g.fit==='contain'?' class="contain"':'')+' src="'+g.image+'" alt="'+g.alt+'" loading="'+(g.eager?'eager':'lazy')+'" decoding="async"><span class="year">OPEN ↗&#xFE0E;</span></div><div class="game-body"><span class="genre">'+g.genre+'</span><h3>'+g.title+'</h3><div class="meta">'+g.site+'</div><div class="card-actions">'+action+'</div></div></article>'}
       function renderFilters(){var genres=["All","Zombies","Adventure","Shooter","Sports","Mobile"];filters.innerHTML=genres.map(function(g){return '<button class="filter'+(g===active?' active':'')+'" data-genre="'+g+'" aria-pressed="'+(g===active)+'">'+g+'</button>'}).join("");Array.prototype.forEach.call(filters.querySelectorAll("button"),function(btn){btn.addEventListener("click",function(){active=btn.getAttribute("data-genre");renderFilters();renderGames()})})}
       function renderGames(){var list=games.filter(function(g){var categories=g.categories||[g.genre],matchesFilter=active==="All"||categories.indexOf(active)>-1,haystack=(g.title+" "+g.site+" "+g.genre+" "+categories.join(" ")).toLowerCase().replace(/[^a-z0-9]+/g," "),needle=query.replace(/[^a-z0-9]+/g," "),matchesSearch=haystack.indexOf(needle)>-1;if(query)return matchesSearch;return matchesFilter});grid.innerHTML=list.map(card).join("");grid.style.display=list.length?"grid":"none";empty.style.display=list.length?"none":"block";count.textContent=list.length+" "+(list.length===1?"GAME":"GAMES")}
       var verifyDialog=document.getElementById("verificationDialog"),verifyDots=document.getElementById("verifyDots"),verifyGame=document.getElementById("verifyGame"),verifyButton=document.getElementById("botVerifyBtn"),verifyError=document.getElementById("verifyError"),verifyTimer,verifyDelay,watchTimer,selectedLocker="";
@@ -277,6 +277,5 @@
       renderFilters();renderGames();fitAds();
     })();
   </script>
-<script data-cfasync="false" src="https://bellnewyork.org/14/3889e7801d7322c06be03b367251c01c"></script>
 </body>
 </html>
