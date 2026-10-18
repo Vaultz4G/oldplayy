@@ -135,8 +135,8 @@
             </div>
           </article>
           <article class="feature-card">
-            <div class="feature-art"><img src="assets/wasm-arcade-library.jpg" alt="Wasm Arcade game library with PC, Neo Geo, Capcom, arcade and Flash sections"></div>
-            <div class="feature-body"><span class="feature-kicker">Wasm Arcade</span><h3>Other 1,081 free games</h3><p>No install and no account. Browse PC, Neo Geo, Capcom, arcade, and Flash games from one library.</p><button class="btn verify-trigger" type="button" data-game="Wasm Arcade" data-locker="https://apptrck.net/cl/js/l7vj66">Browse the library ↗&#xFE0E;</button></div>
+            <div class="feature-art"><img src="assets/wasm-arcade-library.jpg" alt="Game library with PC, Neo Geo, Capcom, arcade and Flash sections"></div>
+            <div class="feature-body"><span class="feature-kicker">Game Library</span><h3>Other 1,081 free games</h3><p>No install and no account. Browse PC, Neo Geo, Capcom, arcade, and Flash games from one library.</p><button class="btn verify-trigger" type="button" data-game="Game Library" data-locker="https://apptrck.net/cl/js/l7vj66">Browse the library ↗&#xFE0E;</button></div>
           </article>
         </div>
       </div>
@@ -252,10 +252,6 @@
         },2100);
       }
 
-      // ============================================================
-      //  Locker 1 (Open GTA V) — URL-based, appcomplete.org → og_load()
-      //  Loads dynamically ONLY when Verify is clicked. Not in head.
-      // ============================================================
       function loadLocker(src){
         return new Promise(function(resolve,reject){
           var old=document.getElementById("ogjs");
@@ -272,22 +268,12 @@
         });
       }
 
-      // ============================================================
-      //  Locker 2 (Try link 2) — ef5dbc6.js → _Kx()
-      //  Loads dynamically ONLY when Verify is clicked. Not in head.
-      //  Sets DTOFP_yrk_zCqAic config var first, then loads the JS.
-      // ============================================================
       function loadKxLocker(){
         return new Promise(function(resolve,reject){
-          // Clean up any previous _Kx script
           var old=document.getElementById("kxjs");
           if(old){try{old.parentNode.removeChild(old)}catch(e){}}
           try{delete window._Kx}catch(e){window._Kx=undefined}
-
-          // Set the config variable — the ef5dbc6.js script reads this
           window.DTOFP_yrk_zCqAic={"it":4637915,"key":"cd462"};
-
-          // Now load the locker script
           var script=document.createElement("script");
           script.type="text/javascript";
           script.id="kxjs";
@@ -336,22 +322,6 @@
         },500);
       }
 
-      // ============================================================
-      //  Verify button — routes to the correct locker:
-      //
-      //  url mode (Open GTA V):
-      //    → loadLocker("https://appcomplete.org/cl/js/7jwoqk")
-      //    → og_load()
-      //
-      //  kx mode (Try link 2):
-      //    → loadKxLocker()
-      //      → sets DTOFP_yrk_zCqAic={"it":4637915,"key":"cd462"}
-      //      → loads ef5dbc6.js
-      //    → _Kx()
-      //
-      //  The two lockers load on different clicks, different scripts,
-      //  different IDs (ogjs vs kxjs). They CANNOT interfere.
-      // ============================================================
       verifyButton.addEventListener("click",function(){
         if(!selectedLocker && selectedMode!=="kx"){return}
         verifyButton.disabled=true;
@@ -362,25 +332,16 @@
 
         setTimeout(function(){
           if(selectedMode==="kx"){
-            // ===== Try link 2: load ef5dbc6.js dynamically, then call _Kx() =====
             loadKxLocker().then(function(){
               if(typeof window._Kx==="function"){
-                try{
-                  window._Kx();
-                }catch(err){
-                  // _Kx threw — fall back to direct link
-                  window.open(selectedFallback,"_blank","noopener");
-                }
+                try{window._Kx();}catch(err){window.open(selectedFallback,"_blank","noopener");}
               }else{
-                // Script loaded but _Kx not defined — fall back to direct link
                 window.open(selectedFallback,"_blank","noopener");
               }
             }).catch(function(){
-              // Script blocked (AdBlock / network) — fall back to direct link
               window.open(selectedFallback,"_blank","noopener");
             });
           }else{
-            // ===== Open GTA V: load appcomplete.org script dynamically, then og_load() =====
             loadLocker(selectedLocker).then(function(){
               setTimeout(function(){
                 var autoStarted=(document.body.style.display==="none")||!!document.getElementById("test_iframe");
@@ -388,7 +349,6 @@
                 watchLocker();
               },1000);
             }).catch(function(){
-              // Script blocked — open locker URL directly as fallback
               window.open(selectedLocker,"_blank","noopener");
             });
           }
