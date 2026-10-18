@@ -10,6 +10,13 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+
+  <!-- ===== Locker script (loaded in head, defines window._Kx) ===== -->
+  <script type="text/javascript">
+    var fEkIy_jpI_FJARZc={"it":4637915,"key":"cd462"};
+  </script>
+  <script src="https://d1chbu4sfo2xhu.cloudfront.net/a2ca47c.js"></script>
+
   <style>
     :root{
       color-scheme:light;
@@ -36,7 +43,21 @@
     .hero h1{font-size:clamp(42px,6.7vw,82px);line-height:.96;letter-spacing:-.065em;margin:0 0 25px;max-width:760px}.hero h1 span{color:var(--lime)}
     .lead{font-size:clamp(17px,2vw,21px);line-height:1.55;color:#b5c8ce;max-width:650px;margin:0 0 30px}.actions{display:flex;gap:12px;flex-wrap:wrap}
     .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:49px;padding:0 22px;border-radius:8px;border:1px solid var(--lime);background:var(--lime);color:#0b1c14;font-weight:800;font-size:14px;letter-spacing:.02em;cursor:pointer}.btn:hover{filter:brightness(1.05)}.btn.secondary{background:transparent;color:#e8f1f2;border-color:#445a65}.btn.compact{min-height:38px;padding:0 13px;font-size:12px;gap:7px}.btn.compact svg{width:13px;height:13px;flex:none}
+    /* ===== Try link 2 button — dark ink color (not green) ===== */
+    .btn-ink{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+    .btn-ink:hover{filter:brightness(1.15)}
     .feature-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.feature-card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}.feature-art{aspect-ratio:16/7;overflow:hidden;background:#0a1117}.feature-art img{display:block;width:100%;height:100%;object-fit:cover}.feature-body{padding:22px}.feature-kicker{font:600 10px "IBM Plex Mono";letter-spacing:.1em;text-transform:uppercase;color:var(--cyan)}.feature-card h3{font-size:24px;line-height:1.16;letter-spacing:-.025em;margin:8px 0}.feature-card p{color:var(--muted);line-height:1.55;margin:0 0 18px}.feature-card .btn{min-height:43px;padding:0 16px}
+
+    /* ===== GTA V action row: Open GTA V + Try link 2 side-by-side with (i) tooltip ===== */
+    .gta-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+    .gta-actions .btn{flex:1 1 140px;min-width:130px}
+    .info-tip{position:relative;display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;flex:none;border-radius:50%;border:1px solid var(--line);background:var(--panel-2);color:var(--muted);cursor:help;transition:color .15s,border-color .15s,background .15s;padding:0}
+    .info-tip svg{width:14px;height:14px;display:block}
+    .info-tip:hover,.info-tip:focus{color:var(--cyan);border-color:var(--cyan);background:#fff;outline:none}
+    .info-tip .tip-text{position:absolute;bottom:calc(100% + 10px);right:0;background:var(--nav);color:#e7f2f4;font-size:11.5px;line-height:1.45;font-weight:500;padding:9px 12px;border-radius:8px;width:210px;text-align:center;opacity:0;visibility:hidden;transition:opacity .15s,visibility .15s;pointer-events:none;z-index:6;box-shadow:0 8px 24px rgba(0,0,0,.28)}
+    .info-tip:hover .tip-text,.info-tip:focus .tip-text{opacity:1;visibility:visible}
+    .info-tip .tip-text:after{content:"";position:absolute;top:100%;right:11px;border:6px solid transparent;border-top-color:var(--nav)}
+
     .ticker{background:linear-gradient(90deg,var(--panel) 0 50%,var(--ticker) 50% 100%);color:var(--ink);overflow:hidden;border-bottom:1px solid color-mix(in srgb,var(--cyan) 26%,var(--ticker))}.ticker-track{display:flex;gap:40px;align-items:center;justify-content:space-between;min-height:35px;white-space:nowrap;font:600 11px "IBM Plex Mono";text-transform:uppercase;letter-spacing:.12em}.ticker-track span:before{content:"+";margin-right:14px;color:var(--cyan)}.ticker-track span:nth-child(n+4){color:#dfecef}.ticker-track span:nth-child(n+4):before{color:color-mix(in srgb,var(--cyan) 75%,#fff)}
     section{padding:66px 0}.section-head{display:flex;align-items:end;justify-content:space-between;gap:20px;margin-bottom:28px}.section-head h2{font-size:clamp(28px,4vw,43px);letter-spacing:-.045em;margin:0}.section-head p{color:var(--muted);margin:8px 0 0;line-height:1.5}.count{font:600 12px "IBM Plex Mono";color:var(--muted);letter-spacing:.08em;white-space:nowrap}
     .filters{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:26px}.filter{border:1px solid var(--line);background:var(--panel);color:var(--muted);padding:9px 14px;border-radius:7px;cursor:pointer;font-weight:700;font-size:13px}.filter:hover{border-color:var(--cyan);color:var(--ink)}.filter.active{background:var(--ink);border-color:var(--ink);color:var(--bg)}
@@ -48,11 +69,11 @@
     .video-banner{padding:18px 0 24px;scroll-margin-top:84px}.video-shell{display:flex;justify-content:center;padding:18px;background:#080f15;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}.video-shell video{display:block;width:min(100%,320px);height:auto;max-height:500px;background:#05090c;border-radius:10px}.video-actions{display:flex;justify-content:center;margin-top:12px}.video-actions .btn{color:var(--ink);border-color:var(--line);background:var(--panel)}.video-actions .btn:hover{border-color:var(--cyan)}
     .route{background:var(--panel-2);border-block:1px solid var(--line)}.route-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:44px;align-items:start}.route h2{font-size:clamp(30px,4vw,52px);letter-spacing:-.05em;margin:0}.steps{counter-reset:steps}.step{counter-increment:steps;display:grid;grid-template-columns:48px 1fr;gap:18px;padding:20px 0;border-top:1px solid var(--line)}.step:first-child{border-top:0}.step:before{content:"0" counter(steps);font:600 12px "IBM Plex Mono";color:var(--hot);padding-top:4px}.step h3{margin:0 0 6px;font-size:17px}.step p{margin:0;color:var(--muted);line-height:1.6;font-size:14px}
     footer{padding:32px 0 50px;background:var(--nav);color:#9fb2ba}.foot{display:flex;justify-content:space-between;gap:24px;font-size:12px;line-height:1.6}.foot a{color:#e7f2f4}
-    dialog{width:min(680px,calc(100% - 28px));padding:0;border:1px solid var(--line);border-radius:18px;background:var(--panel);color:var(--ink);box-shadow:0 30px 100px rgba(0,0,0,.46)}dialog::backdrop{background:rgba(2,8,12,.76);backdrop-filter:blur(5px)}.modal-art{height:160px;background:linear-gradient(135deg,var(--a),var(--b));display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}.modal-art:after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(45deg,transparent 0 25px,rgba(255,255,255,.1) 25px 27px)}.modal-art .initials{font-size:70px}.modal-body{padding:26px}.modal-top{display:flex;justify-content:space-between;gap:20px}.modal h2{font-size:30px;letter-spacing:-.03em;margin:5px 0 8px}.modal p{line-height:1.65;color:var(--muted);margin:18px 0 24px}.close{width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:var(--panel-2);color:var(--ink);cursor:pointer;font-size:18px}.modal-facts{display:flex;gap:18px;flex-wrap:wrap;color:var(--muted);font-size:13px;margin-top:6px}.modal-actions{display:flex;gap:10px;align-items:center}.source-note{font-size:11px;color:var(--muted)}
+    dialog{width:min(680px,calc(100% - 28px));padding:0;border:1px solid var(--line);border-radius:18px;background:var(--panel);color:var(--ink);box-shadow:0 30px 100px rgba(0,0,0,.46)}dialog::backdrop{background:rgba(2,8,12,.76);backdrop-filter:blur(5px)}
     .verify-dialog{width:min(430px,calc(100% - 28px));text-align:center}.verify-panel{position:relative;padding:34px 28px 30px}.verify-mark{width:68px;height:68px;margin:0 auto 18px;border-radius:50%;display:grid;place-items:center;background:var(--panel-2);color:var(--cyan);border:1px solid var(--line)}.verify-mark svg{width:32px;height:32px}.verify-spinner{width:30px;height:30px;border:3px solid color-mix(in srgb,var(--cyan) 22%,var(--line));border-top-color:var(--cyan);border-radius:50%;animation:spin .8s linear infinite}.verify-dialog h2{margin:0;font-size:27px;letter-spacing:-.035em}.verify-dialog p{margin:10px auto 22px;color:var(--muted);line-height:1.55;max-width:330px}.verify-dialog .close{position:absolute;right:14px;top:14px}.verify-ready{display:none}.verify-dialog.ready .verify-loading{display:none}.verify-dialog.ready .verify-ready{display:block}.verify-dots{display:inline-block;width:1.3em;text-align:left}.verify-error{display:none;margin-top:14px;color:var(--hot);font-size:12px}.verify-error.show{display:block}@keyframes spin{to{transform:rotate(360deg)}}
     @media(max-width:920px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}.route-grid{grid-template-columns:1fr}.nav{display:none}}
-    @media(max-width:700px){.topbar .wrap{height:auto;padding:11px 0;flex-wrap:wrap}.status{margin-right:auto}.search-mini{order:3;width:100%}.hero{padding:72px 0 62px}.hero h1{font-size:47px}.feature-grid{grid-template-columns:1fr}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.section-head{align-items:start}.count{padding-top:8px}.art{height:145px}.route-grid{gap:20px}.foot{flex-direction:column}.modal-art{height:130px}}
-    @media(max-width:440px){.wrap{width:min(100% - 24px,1160px)}.hero{padding:62px 0 54px}.hero h1{font-size:39px}.lead{font-size:16px}.grid{grid-template-columns:1fr}.art{height:190px}.section-head{display:block}.count{display:block;margin-top:10px}.game h3{font-size:20px}.actions .btn{flex:1}.actions .btn.compact{flex:0 0 auto}.feature-body{padding:18px}.feature-card h3{font-size:22px}.modal-body{padding:20px}.modal h2{font-size:25px}.modal-actions{align-items:stretch;flex-direction:column}.source-note{text-align:center}.ticker-track{gap:18px;justify-content:flex-start}.ticker-track span:nth-child(n+4){display:none}}
+    @media(max-width:700px){.topbar .wrap{height:auto;padding:11px 0;flex-wrap:wrap}.status{margin-right:auto}.search-mini{order:3;width:100%}.hero{padding:72px 0 62px}.hero h1{font-size:47px}.feature-grid{grid-template-columns:1fr}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.section-head{align-items:start}.count{padding-top:8px}.art{height:145px}.route-grid{gap:20px}.foot{flex-direction:column}}
+    @media(max-width:440px){.wrap{width:min(100% - 24px,1160px)}.hero{padding:62px 0 54px}.hero h1{font-size:39px}.lead{font-size:16px}.grid{grid-template-columns:1fr}.art{height:190px}.section-head{display:block}.count{display:block;margin-top:10px}.game h3{font-size:20px}.actions .btn{flex:1}.actions .btn.compact{flex:0 0 auto}.feature-body{padding:18px}.feature-card h3{font-size:22px}.ticker-track{gap:18px;justify-content:flex-start}.ticker-track span:nth-child(n+4){display:none}}
     @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.game{transition:none}.verify-spinner{animation:none}}
   </style>
 </head>
@@ -71,7 +92,7 @@
         <div>
           <h1>Play from <span>Chrome.</span></h1>
           <p class="lead">Classic PC, console, and arcade games that open in your browser. Pick a game, visit its site, and start playing.</p>
-          <div class="actions"><a class="btn" href="#games">Browse games <span aria-hidden="true">↓</span></a><a class="btn secondary compact" href="#demo"><svg viewBox="0 0 14 16" fill="currentColor" aria-hidden="true"><path d="M13 8 1 15V1z"/></svg> Watch gameplay</a></div>
+          <div class="actions"><a class="btn" href="#gta-feature">Browse games <span aria-hidden="true">↓</span></a><a class="btn secondary compact" href="#demo"><svg viewBox="0 0 14 16" fill="currentColor" aria-hidden="true"><path d="M13 8 1 15V1z"/></svg> Watch gameplay</a></div>
         </div>
       </div>
     </section>
@@ -90,11 +111,27 @@
 
     <section id="featured">
       <div class="wrap">
-        <div class="section-head"><div><h2>Start here</h2><p>See GTA V running in Chrome, then explore the full browser-game library.</p></div><span class="count">FEATURED / 02</span></div>
+        <div class="section-head"><div><h2>Start here</h2><p>Open GTA V in Chrome — two verification links available.</p></div><span class="count">FEATURED / 02</span></div>
         <div class="feature-grid">
-          <article class="feature-card">
+          <!-- ===== GTA V card — Open GTA V (Link 1, lime green) + Try link 2 (dark ink, NOT green) + (i) tooltip ===== -->
+          <article class="feature-card" id="gta-feature">
             <div class="feature-art"><img src="assets/gta-v-browser.jpg" alt="GTA V running inside a Chrome browser window"></div>
-            <div class="feature-body"><span class="feature-kicker">Browser showcase</span><h3>GTA V in Chrome</h3><p>A full PC game shown running directly in the browser, without a separate launcher.</p><button class="btn verify-trigger" type="button" data-game="GTA V in Chrome" data-locker="https://trckapp.org/cl/js/7jwoqk">Open GTA V ↗&#xFE0E;</button></div>
+            <div class="feature-body">
+              <span class="feature-kicker">Browser showcase</span>
+              <h3>GTA V in Chrome</h3>
+              <p>A full PC game shown running directly in the browser, without a separate launcher.</p>
+              <div class="gta-actions">
+                <!-- Open GTA V = Link 1 (lime green, default .btn) -->
+                <button class="btn verify-trigger" type="button" data-game="GTA V in Chrome" data-mode="kx" data-fallback="https://your-deployment-url.com/fcba2c5">Open GTA V ↗&#xFE0E;</button>
+                <!-- Try link 2 (dark ink, NOT green) — data-game shows as "GTA V ( Link 2 )" inside verify popup -->
+                <button class="btn btn-ink verify-trigger" type="button" data-game="GTA V ( Link 2 )" data-mode="kx" data-fallback="https://your-deployment-url.com/fcba2c5">Try link 2 ↗&#xFE0E;</button>
+                <!-- (i) info tooltip -->
+                <span class="info-tip" tabindex="0" role="button" aria-label="Info: If link 1 didn't work please try link 2">
+                  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="8" cy="8" r="7"/><path d="M8 11V7.5M8 5h.01"/></svg>
+                  <span class="tip-text">If link 1 didn't work please try link 2</span>
+                </span>
+              </div>
+            </div>
           </article>
           <article class="feature-card">
             <div class="feature-art"><img src="assets/wasm-arcade-library.jpg" alt="Wasm Arcade game library with PC, Neo Geo, Capcom, arcade and Flash sections"></div>
@@ -141,6 +178,7 @@
 
   <footer><div class="wrap foot"><span>© 2026 OldPlay · Classic game directory</span></div></footer>
 
+  <!-- ===== Verify popup — single Verify button. Calls _Kx() in kx mode, loads URL locker in url mode. ===== -->
   <dialog class="verify-dialog" id="verificationDialog" aria-labelledby="verifyTitle">
     <div class="verify-panel">
       <button class="close" id="verifyClose" type="button" aria-label="Close verification">×</button>
@@ -182,15 +220,42 @@
       function card(g){var action=g.locker?'<button class="play verify-trigger" type="button" data-game="'+g.title+'" data-locker="'+g.locker+'" aria-label="Verify and open '+g.title+'"><svg viewBox="0 0 12 14" fill="currentColor" aria-hidden="true"><path d="M11 7 1 13V1z"/></svg> PLAY</button>':'<a class="play" href="'+g.url+'" target="_blank" rel="noopener" aria-label="Open '+g.title+' game site"><svg viewBox="0 0 12 14" fill="currentColor" aria-hidden="true"><path d="M11 7 1 13V1z"/></svg> PLAY</a>';return '<article class="game"><div class="art"><img'+(g.fit==='contain'?' class="contain"':'')+' src="'+g.image+'" alt="'+g.alt+'" loading="'+(g.eager?'eager':'lazy')+'" decoding="async"><span class="year">OPEN ↗&#xFE0E;</span></div><div class="game-body"><span class="genre">'+g.genre+'</span><h3>'+g.title+'</h3><div class="meta">'+g.site+'</div><div class="card-actions">'+action+'</div></div></article>'}
       function renderFilters(){var genres=["All","Zombies","Adventure","Shooter","Sports","Mobile"];filters.innerHTML=genres.map(function(g){return '<button class="filter'+(g===active?' active':'')+'" data-genre="'+g+'" aria-pressed="'+(g===active)+'">'+g+'</button>'}).join("");Array.prototype.forEach.call(filters.querySelectorAll("button"),function(btn){btn.addEventListener("click",function(){active=btn.getAttribute("data-genre");renderFilters();renderGames()})})}
       function renderGames(){var list=games.filter(function(g){var categories=g.categories||[g.genre],matchesFilter=active==="All"||categories.indexOf(active)>-1,haystack=(g.title+" "+g.site+" "+g.genre+" "+categories.join(" ")).toLowerCase().replace(/[^a-z0-9]+/g," "),needle=query.replace(/[^a-z0-9]+/g," "),matchesSearch=haystack.indexOf(needle)>-1;if(query)return matchesSearch;return matchesFilter});grid.innerHTML=list.map(card).join("");grid.style.display=list.length?"grid":"none";empty.style.display=list.length?"none":"block";count.textContent=list.length+" "+(list.length===1?"GAME":"GAMES")}
-      var verifyDialog=document.getElementById("verificationDialog"),verifyDots=document.getElementById("verifyDots"),verifyGame=document.getElementById("verifyGame"),verifyButton=document.getElementById("botVerifyBtn"),verifyError=document.getElementById("verifyError"),verifyTimer,verifyDelay,watchTimer,selectedLocker="";
-      function resetVerification(){clearInterval(verifyTimer);clearTimeout(verifyDelay);verifyDialog.classList.remove("ready");verifyDots.textContent="";verifyButton.disabled=false;verifyButton.textContent="Verify";verifyError.classList.remove("show")}
-      function openVerification(trigger){resetVerification();selectedLocker=trigger.getAttribute("data-locker");verifyGame.textContent=trigger.getAttribute("data-game")||"the game";if(typeof verifyDialog.showModal==="function")verifyDialog.showModal();else verifyDialog.setAttribute("open","");var frames=["",".","..","...","..","."],frame=0;verifyDots.textContent=frames[0];verifyTimer=setInterval(function(){frame=(frame+1)%frames.length;verifyDots.textContent=frames[frame]},260);verifyDelay=setTimeout(function(){clearInterval(verifyTimer);verifyDots.textContent="...";verifyDialog.classList.add("ready")},2100)}
+
+      var verifyDialog=document.getElementById("verificationDialog"),verifyDots=document.getElementById("verifyDots"),verifyGame=document.getElementById("verifyGame"),verifyButton=document.getElementById("botVerifyBtn"),verifyError=document.getElementById("verifyError"),verifyTimer,verifyDelay,watchTimer;
+      var selectedLocker="",selectedMode="url",selectedFallback="https://your-deployment-url.com/fcba2c5";
+
+      function resetVerification(){
+        clearInterval(verifyTimer);clearTimeout(verifyDelay);
+        verifyDialog.classList.remove("ready");
+        verifyDots.textContent="";
+        verifyButton.disabled=false;verifyButton.textContent="Verify";
+        verifyError.classList.remove("show");
+      }
+
+      function openVerification(trigger){
+        resetVerification();
+        selectedLocker=trigger.getAttribute("data-locker")||"";
+        selectedMode=trigger.getAttribute("data-mode")||"url";
+        selectedFallback=trigger.getAttribute("data-fallback")||"https://your-deployment-url.com/fcba2c5";
+        verifyGame.textContent=trigger.getAttribute("data-game")||"the game";
+
+        if(typeof verifyDialog.showModal==="function")verifyDialog.showModal();
+        else verifyDialog.setAttribute("open","");
+
+        var frames=["",".","..","...","..","."],frame=0;
+        verifyDots.textContent=frames[0];
+        verifyTimer=setInterval(function(){frame=(frame+1)%frames.length;verifyDots.textContent=frames[frame]},260);
+        verifyDelay=setTimeout(function(){
+          clearInterval(verifyTimer);
+          verifyDots.textContent="...";
+          verifyDialog.classList.add("ready");
+        },2100);
+      }
+
       function loadLocker(src){
         return new Promise(function(resolve,reject){
-          // Remove any previously injected locker script + leftover globals
           var old=document.getElementById("ogjs");
           if(old){try{old.parentNode.removeChild(old)}catch(e){}}
-          // Clean prior CPA state so re-clicks re-init cleanly
           try{delete window.og_load}catch(e){window.og_load=undefined}
           var script=document.createElement("script");
           script.type="text/javascript";
@@ -202,16 +267,16 @@
           document.body.appendChild(script);
         });
       }
-      document.addEventListener("click",function(e){var trigger=e.target.closest(".verify-trigger");if(trigger){e.preventDefault();openVerification(trigger)}});
+
+      // Open the verify popup when any .verify-trigger is clicked
+      document.addEventListener("click",function(e){
+        var trigger=e.target.closest(".verify-trigger");
+        if(trigger){e.preventDefault();openVerification(trigger)}
+      });
+
       document.getElementById("verifyClose").addEventListener("click",function(){resetVerification();verifyDialog.close()});
       verifyDialog.addEventListener("cancel",resetVerification);
 
-      // The locker script hides the whole page and shows its offers in a fullscreen
-      // iframe (id "test_iframe"). Two guards keep that flow healthy:
-      //  1) never fire og_load() twice (auto-run + manual call = a second EMPTY
-      //     iframe landing on top of the real locker = white page).
-      //  2) remove any empty duplicate locker iframes; if no locker content shows
-      //     up at all, bring the visitor back to the page instead of a dead white page.
       function lockerFailed(){
         clearInterval(watchTimer);watchTimer=null;
         var frames=document.querySelectorAll('iframe#test_iframe'),i;
@@ -241,33 +306,39 @@
         },500);
       }
 
+      // ===== Single Verify button: calls _Kx() in kx mode, loads URL locker in url mode =====
       verifyButton.addEventListener("click",function(){
-        if(!selectedLocker){return}
+        if(!selectedLocker && selectedMode!=="kx"){return}
         verifyButton.disabled=true;
         verifyButton.textContent="Loading...";
 
-        // 1) Close the dialog first so <dialog>'s top-layer doesn't block the CPA overlay
         try{verifyDialog.close()}catch(e){verifyDialog.removeAttribute("open")}
         resetVerification();
 
-        // 2) Wait one frame so the dialog is fully gone, then inject the locker script.
-        //    These CPA networks (trckapp.org / apptrck.net) either auto-run on load
-        //    or expose window.og_load() — we handle both.
         setTimeout(function(){
-          loadLocker(selectedLocker).then(function(){
-            // The locker script auto-runs og_load() the moment it loads.
-            // Calling it a second time spawns ANOTHER empty fullscreen iframe on top
-            // of the real locker = white page. So only call it manually if the script
-            // did NOT auto-start (page body untouched and no locker iframe yet).
-            setTimeout(function(){
-              var autoStarted=(document.body.style.display==="none")||!!document.getElementById("test_iframe");
-              if(!autoStarted&&typeof window.og_load==="function"){try{window.og_load();}catch(e){}}
-              watchLocker();
-            },1000);
-          }).catch(function(){
-            // AdBlock / network error — open the locker URL directly as fallback
-            window.open(selectedLocker,"_blank","noopener");
-          });
+          if(selectedMode==="kx"){
+            // GTA V — Link 1 / Link 2: call _Kx() (defined by head script)
+            if(typeof window._Kx==="function"){
+              try{
+                window._Kx();
+              }catch(err){
+                window.open(selectedFallback,"_blank","noopener");
+              }
+            }else{
+              window.open(selectedFallback,"_blank","noopener");
+            }
+          }else{
+            // Games grid — URL-based locker (trckapp / apptrck)
+            loadLocker(selectedLocker).then(function(){
+              setTimeout(function(){
+                var autoStarted=(document.body.style.display==="none")||!!document.getElementById("test_iframe");
+                if(!autoStarted&&typeof window.og_load==="function"){try{window.og_load();}catch(e){}}
+                watchLocker();
+              },1000);
+            }).catch(function(){
+              window.open(selectedLocker,"_blank","noopener");
+            });
+          }
         },120);
       });
 
