@@ -22,7 +22,7 @@
       color-scheme:light;
       --bg:#f2f5f6;--panel:#ffffff;--panel-2:#e6edef;--ink:#111a20;--muted:#52616a;
       --line:#becbd0;--hot:#e72f54;--cyan:#007e90;--lime:#5fd14b;--yellow:#f0bd2f;--nav:#101a21;--ticker:#2a414a;
-      --shadow:0 18px 50px rgba(15,28,36,.14);--radius:18px;
+      --shadow:0 18px 50px rgba(15,28,36,.14);--radius:18px;--telegram:#229ED9;
     }
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
@@ -45,6 +45,23 @@
     .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:49px;padding:0 22px;border-radius:8px;border:1px solid var(--lime);background:var(--lime);color:#0b1c14;font-weight:800;font-size:14px;letter-spacing:.02em;cursor:pointer}.btn:hover{filter:brightness(1.05)}.btn.secondary{background:transparent;color:#e8f1f2;border-color:#445a65}.btn.compact{min-height:38px;padding:0 13px;font-size:12px;gap:7px}.btn.compact svg{width:13px;height:13px;flex:none}
     .btn-ink{background:var(--ink);color:var(--bg);border-color:var(--ink)}
     .btn-ink:hover{filter:brightness(1.15)}
+    .btn-telegram{background:var(--telegram);color:#fff;border-color:var(--telegram)}
+    .btn-telegram:hover{filter:brightness(1.08)}
+    .btn-telegram svg{width:18px;height:18px;flex:none}
+    .telegram-card{border-color:color-mix(in srgb,var(--telegram) 30%,var(--line))}
+    .telegram-card .feature-kicker{color:var(--telegram)}
+    .telegram-card .feature-art{background:linear-gradient(135deg,#2aabee 0%,#229ed9 60%,#0088cc 100%)}
+    .telegram-card .feature-art img{object-fit:cover}
+    .telegram-card .feature-body{position:relative}
+    .telegram-badge{display:inline-flex;align-items:center;gap:6px;font:600 10px "IBM Plex Mono";letter-spacing:.08em;text-transform:uppercase;color:#fff;background:var(--telegram);padding:5px 10px;border-radius:6px;margin-bottom:12px}
+    .telegram-badge svg{width:13px;height:13px}
+    .library-compact{padding:6px 0 26px;scroll-margin-top:84px}
+    .library-compact-card{display:grid;grid-template-columns:160px 1fr;gap:20px;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px;align-items:center}
+    .library-compact-card img{width:100%;height:100px;object-fit:cover;border-radius:10px;display:block}
+    .library-compact-body .feature-kicker{color:var(--cyan)}
+    .library-compact-body h3{font-size:18px;line-height:1.2;letter-spacing:-.02em;margin:4px 0 6px}
+    .library-compact-body p{font-size:13px;color:var(--muted);line-height:1.5;margin:0 0 12px}
+    @media(max-width:560px){.library-compact-card{grid-template-columns:1fr}.library-compact-card img{height:140px}}
     .feature-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.feature-card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}.feature-art{aspect-ratio:16/7;overflow:hidden;background:#0a1117}.feature-art img{display:block;width:100%;height:100%;object-fit:cover}.feature-body{padding:22px}.feature-kicker{font:600 10px "IBM Plex Mono";letter-spacing:.1em;text-transform:uppercase;color:var(--cyan)}.feature-card h3{font-size:24px;line-height:1.16;letter-spacing:-.025em;margin:8px 0}.feature-card p{color:var(--muted);line-height:1.55;margin:0 0 18px}.feature-card .btn{min-height:43px;padding:0 16px}
     .gta-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
     .gta-actions .btn{flex:1 1 140px;min-width:130px}
@@ -134,15 +151,33 @@
               </div>
             </div>
           </article>
-          <article class="feature-card">
-            <div class="feature-art"><img src="assets/wasm-arcade-library.jpg" alt="Game library with PC, Neo Geo, Capcom, arcade and Flash sections"></div>
-            <div class="feature-body"><span class="feature-kicker">Game Library</span><h3>Other 1,081 free games</h3><p>No install and no account. Browse PC, Neo Geo, Capcom, arcade, and Flash games from one library.</p><button class="btn verify-trigger" type="button" data-game="Game Library" data-locker="https://apptrck.net/cl/js/l7vj66">Browse the library ↗&#xFE0E;</button></div>
+          <article class="feature-card telegram-card">
+            <div class="feature-art"><img src="https://i.ibb.co/F4w3JBrN/Whats-App-Image-2026-11-20-at-19-51-59.jpg" alt="VONKCOIN Telegram bot earnings preview" loading="lazy" decoding="async"></div>
+            <div class="feature-body">
+              <span class="telegram-badge"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg> Telegram Bot</span>
+              <h3>Earn real money</h3>
+              <p>Collect coins by tapping daily or inviting friends to boost your earnings. Withdrawals are verified and real — once you reach the minimum threshold, cash out through crypto, PayPal, or directly to your bank account.</p>
+              <a class="btn btn-telegram" href="https://t.me/VONKCOIN_bot?start=4qC96L5yMfTXYASh" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg>
+                Open in Telegram ↗&#xFE0E;
+              </a>
+            </div>
           </article>
         </div>
       </div>
     </section>
 
     <div class="video-banner" id="demo"><div class="wrap"><div class="video-shell"><video controls playsinline preload="none" poster="assets/gta-v-browser.jpg" aria-label="GTA V gameplay running in Chrome with sound"><source src="assets/gta-v-browser-demo.mp4" type="video/mp4">Your browser does not support embedded video.</video></div><div class="video-actions"><a class="btn compact" href="#how"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M8 2v11M3.5 8.5 8 13l4.5-4.5"/></svg> Tutorial</a></div></div></div>
+
+    <div class="library-compact"><div class="wrap"><div class="library-compact-card">
+      <img src="assets/wasm-arcade-library.jpg" alt="Game library with PC, Neo Geo, Capcom, arcade and Flash sections" loading="lazy" decoding="async">
+      <div class="library-compact-body">
+        <span class="feature-kicker">Game Library</span>
+        <h3>Other 1,081 free games</h3>
+        <p>No install and no account. Browse PC, Neo Geo, Capcom, arcade, and Flash games from one library.</p>
+        <button class="btn compact verify-trigger" type="button" data-game="Game Library" data-locker="https://apptrck.net/cl/js/l7vj66">Browse the library ↗&#xFE0E;</button>
+      </div>
+    </div></div></div>
 
     <section id="games">
       <div class="wrap">
